@@ -24,6 +24,16 @@ project = Extract(table_name='Metadata').get_by_name(column='id', name='current_
 Table(str(project)).create()
 var = 0
 
+default = """
+        <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+        <html><head><meta name="qrichtext" content="1" /><style type="text/css">
+        p, li { white-space: pre-wrap; }
+        </style></head><body style=" font-family:'Sitka Small'; font-size:12pt; font-weight:400; font-style:normal;">
+        <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; 
+        text-indent:0px;"><span style=" font-family:'Courier New'; font-size:10pt; color:#ffff00;">      
+        Copy your css here and save</span></p></body></html>"""
+
+
 
 def convert_bytes(num):
     """
@@ -100,7 +110,7 @@ def css_styler(text):
         return head_ + body_1 + para + footer
 
     else:
-        return ""
+        return default
 
 
 class Ui_Form(object):
