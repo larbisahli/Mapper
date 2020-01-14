@@ -280,7 +280,10 @@ class Ui_Form(object):
     def list_init(self):
 
         _translate = QtCore.QCoreApplication.translate
-        projects = eval(Extract(table_name="Metadata").get_by_name(column="id", name="projects")[1])
+        try:
+            projects = eval(Extract(table_name="Metadata").get_by_name(column="id", name="projects")[1])
+        except TypeError:
+            projects = []
         self.listWidget.setSortingEnabled(True)
         __sortingEnabled = self.listWidget.isSortingEnabled()
         self.listWidget.setSortingEnabled(False)
@@ -301,8 +304,10 @@ class Ui_Form(object):
         _translate = QtCore.QCoreApplication.translate
         text = str(self.input.text())
         if len(text) > 0:
-            projects = eval(Extract(table_name="Metadata").get_by_name(column="id", name="projects")[1])
-
+            try:
+                projects = eval(Extract(table_name="Metadata").get_by_name(column="id", name="projects")[1])
+            except TypeError:
+                projects = []
             try:
                 projects.remove(text)
                 box = QMessageBox()
@@ -352,7 +357,12 @@ class Ui_Form(object):
         _translate = QtCore.QCoreApplication.translate
         text = str(self.input.text())
         if len(text) > 0:
-            projects = eval(Extract(table_name="Metadata").get_by_name(column="id", name="projects")[1])
+            
+            try:
+                projects = eval(Extract(table_name="Metadata").get_by_name(column="id", name="projects")[1])
+            except TypeError:
+                projects = []
+            
             projects.append(text)
             Metadata(_id="projects").insert(data=str(projects))
             Metadata(_id="projects").update(data=str(projects))
